@@ -1,16 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
 import validateLogin from '../helpers/validateLogin';
 import logo from '../trivia.png';
+import { SAVE_LOCAL_STORAGE, GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
+import fetchToken from '../services/fetchToken';
+import { token } from '../redux/actions/actions';
 
 class Login extends Component {
   state = {
     playerName: '',
     playerEmail: '',
+    playerToken: '',
   }
 
   handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const { history, dispatch } = this.props;
+    SAVE_LOCAL_STORAGE('token', await fetchToken());
+    const tokenSTRING = GET_LOCAL_STORAGE('token');
+    this.setState({ playerToken: tokenSTRING });
+    const { playerToken } = this.state;
+    dispatch(token(playerToken));
+    history.push('/gamepage');
+  };
 
   render() {
     const { playerName, playerEmail } = this.state;
@@ -42,6 +59,7 @@ class Login extends Component {
             type="submit"
             data-testid="btn-play"
             disabled={ !validateLogin(playerEmail, playerName) }
+            onClick={ this.handleSubmit }
           >
             Play
           </button>
@@ -51,4 +69,9 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  history: PropTypes.objectOf.isRequired,
+  dispatch: PropTypes.objectOf.isRequired,
+};
+
+export default connect()(Login);

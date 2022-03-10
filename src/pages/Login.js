@@ -5,13 +5,12 @@ import validateLogin from '../helpers/validateLogin';
 import logo from '../trivia.png';
 import { SAVE_LOCAL_STORAGE, GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
 import fetchToken from '../services/fetchToken';
-import { token } from '../redux/actions/actions';
+import { token, login } from '../redux/actions/actions';
 
 class Login extends Component {
   state = {
     playerName: '',
     playerEmail: '',
-    playerToken: '',
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -21,6 +20,7 @@ class Login extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const { history, dispatch } = this.props;
+    dispatch(login(this.state));
     SAVE_LOCAL_STORAGE('token', await fetchToken());
     const tokenSTRING = GET_LOCAL_STORAGE('token');
     this.setState({ playerToken: tokenSTRING });

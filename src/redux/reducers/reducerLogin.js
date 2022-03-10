@@ -5,7 +5,7 @@ const INICIAL_STATE = {
   playerName: '',
 };
 
-function reducers(state = INICIAL_STATE, action) {
+function reducerLogin(state = INICIAL_STATE, action) {
   switch (action.type) {
   case LOGIN:
     return action.payload;
@@ -14,4 +14,4 @@ function reducers(state = INICIAL_STATE, action) {
   }
 }
 
-export default reducers;
+export default reducerLogin;

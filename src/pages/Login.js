@@ -29,6 +29,11 @@ class Login extends Component {
     history.push('/gamepage');
   };
 
+  handleSettingsClick = () => {
+    const { history } = this.props;
+    history.push('./settings');
+  }
+
   render() {
     const { playerName, playerEmail } = this.state;
     return (
@@ -62,6 +67,13 @@ class Login extends Component {
             onClick={ this.handleSubmit }
           >
             Play
+          </button>
+          <button
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.handleSettingsClick }
+          >
+            Configurações
           </button>
         </form>
       </>

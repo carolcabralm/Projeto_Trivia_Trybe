@@ -1,3 +1,5 @@
+import { LOGIN } from '../actions/actionTypes';
+
 const INICIAL_STATE = {
   playerEmail: '',
   playerName: '',
@@ -5,6 +7,8 @@ const INICIAL_STATE = {
 
 function reducers(state = INICIAL_STATE, action) {
   switch (action.type) {
+  case LOGIN:
+    return action.payload;
   default:
     return state;
   }

@@ -1,71 +1,42 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { quiz } from '../redux/actions/actions';
 import fetchQuiz from '../services/fetchQuiz';
 import Header from '../components/Header';
+import Quiz from '../components/Quiz';
 
 class GamePage extends Component {
   state = {
     questions: [],
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
+    const querys = await fetchQuiz();
+    console.log('QUERYSCOMPONENT', querys);
+    const { dispatch } = this.props;
     this.setState({
-      questions: await fetchQuiz(),
+      questions: querys,
+    }, () => {
+      const { questions } = this.state;
+      console.log('depois de setar estado', questions);
+      dispatch(quiz(questions));
     });
   }
 
   render() {
-    const { questions } = this.state;
-    // console.log(questions);
-    // const shuffle = answers.sort(() => Math.random() - 0.5 );
-    // console.log(shuffle);
-    console.log(questions);
+    // const { questions } = this.state;
     return (
       <div>
         <Header />
-
-        {questions.length && (questions
-          .map(({
-            category,
-            question,
-            correct_answer: correct,
-            incorrect_answers: incorrect,
-          }) => (
-            <div key={ category }>
-              <p data-testid="question-category">{category}</p>
-              <p data-testid="question-text">{question}</p>
-              <div data-testid="answer-options">
-
-                {[...incorrect, correct]
-                  .map((ele, index) => {
-                    if (index === [...incorrect, correct].length - 1) {
-                      return (
-                        <button
-                          type="button"
-                          key={ ele }
-                          data-testid="correct-answer"
-                        >
-                          { ele }
-                        </button>);
-                    }
-                    if (index !== [...incorrect, correct][index - 1]) {
-                      return (
-                        <button
-                          type="button"
-                          key={ ele }
-                          data-testid={ `wrong-answer-${index}` }
-                        >
-                          { ele }
-                        </button>);
-                    }
-                  }).sort(() => Math.random() - 0.5)}
-                }
-              </div>
-            </div>
-          )))}
-
+        <Quiz />
       </div>
     );
   }
 }
 
-export default GamePage;
+GamePage.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+export default connect()(GamePage);

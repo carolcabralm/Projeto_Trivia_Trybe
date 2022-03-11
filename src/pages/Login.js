@@ -82,8 +82,8 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.objectOf.isRequired,
-  dispatch: PropTypes.objectOf.isRequired,
+  history: PropTypes.func.isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
 
 export default connect()(Login);

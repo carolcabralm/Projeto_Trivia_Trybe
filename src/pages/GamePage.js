@@ -13,13 +13,13 @@ class GamePage extends Component {
 
   async componentDidMount() {
     const querys = await fetchQuiz();
-    console.log('QUERYSCOMPONENT', querys);
+    // console.log('QUERYSCOMPONENT', querys);
     const { dispatch } = this.props;
     this.setState({
       questions: querys,
     }, () => {
       const { questions } = this.state;
-      console.log('depois de setar estado', questions);
+      // console.log('depois de setar estado', questions);
       dispatch(quiz(questions));
     });
   }

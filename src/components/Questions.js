@@ -8,7 +8,6 @@ import './Questions.css';
 class Questions extends Component {
   state = {
     buttonNextVisible: false,
-    // questionIndex: 0,
   }
 
   componentDidMount() {

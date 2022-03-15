@@ -4,6 +4,7 @@ const INICIAL_STATE = {
   playerEmail: '',
   playerName: '',
   score: 0,
+  assertions: 0,
 };
 
 function player(state = INICIAL_STATE, action) {
@@ -18,6 +19,7 @@ function player(state = INICIAL_STATE, action) {
     return {
       ...state,
       score: state.score + action.payload,
+      assertions: state.assertions + 1,
     };
   default:
     return state;

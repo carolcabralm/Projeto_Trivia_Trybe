@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
 
 class Ranking extends Component {
   handleClickGoHome = () => {
@@ -8,9 +9,27 @@ class Ranking extends Component {
   }
 
   render() {
+    const ranking = GET_LOCAL_STORAGE('ranking');
+    const sortedRanking = ranking.sort((a, b) => b.score - a.score);
     return (
       <div>
         <p data-testid="ranking-title">Ranking</p>
+        { sortedRanking.map((player, index) => (
+          <div key={ index }>
+            <img src={ player.picture } alt="player avatar" />
+            <p
+              data-testid={ `player-name-${index}` }
+            >
+              {player.name}
+            </p>
+
+            <p
+              data-testid={ `player-score-${index}` }
+            >
+              {player.score}
+            </p>
+          </div>
+        ))}
         <button
           id="goHomeBtn"
           type="button"

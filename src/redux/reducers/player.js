@@ -1,8 +1,8 @@
-import { LOGIN, ADD_SCORE } from '../actions/actionTypes';
+import { LOGIN, ADD_SCORE, RESET_SCORE } from '../actions/actionTypes';
 
 const INICIAL_STATE = {
-  playerEmail: '',
-  playerName: '',
+  gravatarEmail: '',
+  name: '',
   score: 0,
   assertions: 0,
 };
@@ -12,14 +12,20 @@ function player(state = INICIAL_STATE, action) {
   case LOGIN:
     return {
       ...state,
-      playerName: action.payload.playerName,
-      playerEmail: action.payload.playerEmail,
+      name: action.payload.playerName,
+      gravatarEmail: action.payload.playerEmail,
     };
   case ADD_SCORE:
     return {
       ...state,
       score: state.score + action.payload,
       assertions: state.assertions + 1,
+    };
+  case RESET_SCORE:
+    return {
+      ...state,
+      score: 0,
+      assertions: 0,
     };
   default:
     return state;

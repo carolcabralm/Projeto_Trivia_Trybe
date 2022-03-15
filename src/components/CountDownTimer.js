@@ -6,18 +6,18 @@ class CountDownTimer extends Component {
     const { timer } = this.props;
     return (
       <div>
-        { timer }
+        { timer === undefined ? '' : timer }
       </div>
     );
   }
 }
 
 CountDownTimer.propTypes = {
-  timer: PropTypes.number,
+  timer: PropTypes.number.isRequired,
 };
 
-CountDownTimer.defaultProps = {
-  timer: 30,
-};
+// CountDownTimer.defaultProps = {
+//   timer: 30,
+// };
 
 export default CountDownTimer;

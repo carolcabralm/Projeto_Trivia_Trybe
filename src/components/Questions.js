@@ -49,7 +49,11 @@ class Questions extends Component {
   }
 
   handleColorButton = (event) => {
-    const { stopCountDown } = this.props;
+    const { stopCountDown, calculateScore } = this.props;
+
+    if (event.target.id === 'correct') {
+      calculateScore();
+    }
 
     if (event.target.name === 'answer') {
       this.setState({
@@ -146,6 +150,7 @@ Questions.propTypes = {
   timer: PropTypes.number.isRequired,
   questionIndex: PropTypes.number.isRequired,
   nextQuestionHandler: PropTypes.func.isRequired,
+  calculateScore: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps)(Questions);

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { quiz } from '../redux/actions/actions';
+import { quiz, addScore } from '../redux/actions/actions';
 import fetchQuiz from '../services/fetchQuiz';
 import Header from '../components/Header';
 import CountDownTimer from '../components/CountDownTimer';
 import Questions from '../components/Questions';
+import { SAVE_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
 
 class GamePage extends Component {
   state = {
@@ -25,9 +26,17 @@ class GamePage extends Component {
       questions: querys,
     }, () => {
       const { questions } = this.state;
-      // console.log('depois de setar estado', questions);
+
       dispatch(quiz(questions));
     });
+  }
+
+  componentDidUpdate(_prevProps, prevState) {
+    const { questionIndex } = this.state;
+    const { points } = this.props;
+    if (prevState.questionIndex !== questionIndex) {
+      SAVE_LOCAL_STORAGE('pontos', points);
+    }
   }
 
   startCountDown = () => {
@@ -52,6 +61,30 @@ class GamePage extends Component {
     this.setIntervalId = setInterval(this.startCountDown, oneSec);
   }
 
+  calculateScore = () => {
+    const { countDownTimer, questionIndex } = this.state;
+    const { questions, dispatch } = this.props;
+    const { difficulty } = questions[questionIndex];
+
+    let levelScore = 0;
+    const hardNumber = 3;
+    const mediumNumber = 2;
+    const easyNumber = 1;
+    const scoreNumber = 10;
+
+    if (difficulty === 'hard') {
+      levelScore = hardNumber;
+    } else if (difficulty === 'medium') {
+      levelScore = mediumNumber;
+    } else {
+      levelScore = easyNumber;
+    }
+
+    const score = scoreNumber + (countDownTimer * levelScore);
+
+    dispatch(addScore(score));
+  }
+
   render() {
     const { countDownTimer, questionIndex } = this.state;
     return (
@@ -62,6 +95,7 @@ class GamePage extends Component {
           questionIndex={ questionIndex }
           stopCountDown={ this.stopCountDown }
           nextQuestionHandler={ this.nextQuestionHandler }
+          calculateScore={ this.calculateScore }
         />
         <CountDownTimer timer={ countDownTimer } />
       </div>
@@ -69,8 +103,15 @@ class GamePage extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  questions: state.reducerQuiz.quiz,
+  points: state.player.score,
+});
+
 GamePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  questions: PropTypes.instanceOf(Array).isRequired,
+  points: PropTypes.number.isRequired,
 };
 
-export default connect()(GamePage);
+export default connect(mapStateToProps)(GamePage);

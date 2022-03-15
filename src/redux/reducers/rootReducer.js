@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import reducerLogin from './reducerLogin';
+import player from './player';
 import token from './token';
 import reducerQuiz from './reducerQuiz';
+import reducerScore from './reducerScore';
 
-const rootReducer = combineReducers({ reducerLogin, token, reducerQuiz });
+const rootReducer = combineReducers({ player, token, reducerQuiz, reducerScore });
 
 export default rootReducer;

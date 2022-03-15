@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { quiz, addScore } from '../redux/actions/actions';
+import md5 from 'crypto-js/md5';
+import { quiz, addScore, resetScore } from '../redux/actions/actions';
 import fetchQuiz from '../services/fetchQuiz';
 import Header from '../components/Header';
 import CountDownTimer from '../components/CountDownTimer';
 import Questions from '../components/Questions';
-import { SAVE_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
+import { SAVE_LOCAL_STORAGE, GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
+import store from '../redux/store/store';
 
+const numberFour = 4;
 class GamePage extends Component {
   state = {
     questions: [],
@@ -29,6 +32,7 @@ class GamePage extends Component {
 
       dispatch(quiz(questions));
     });
+    dispatch(resetScore(0));
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -37,6 +41,36 @@ class GamePage extends Component {
     if (prevState.questionIndex !== questionIndex) {
       SAVE_LOCAL_STORAGE('pontos', points);
     }
+  }
+
+  componentWillUnmount() {
+    this.savePlayerRanking();
+  }
+
+  savePlayerRanking = () => {
+    const { name, score, gravatarEmail } = store.getState().player;
+    const picture = this.requestAvatar(gravatarEmail);
+    const playerInfo = {
+      name,
+      score,
+      picture,
+    };
+
+    const playersRanking = GET_LOCAL_STORAGE('ranking');
+    console.log(playersRanking);
+
+    if (playersRanking === null) {
+      console.log('log do if');
+      SAVE_LOCAL_STORAGE('ranking', [playerInfo]);
+    } else {
+      const newRanking = [...playersRanking, playerInfo];
+      SAVE_LOCAL_STORAGE('ranking', newRanking);
+    }
+  }
+
+  requestAvatar = (playerEmail) => {
+    const hashEmail = md5(playerEmail).toString();
+    return `https://www.gravatar.com/avatar/${hashEmail}`;
   }
 
   startCountDown = () => {
@@ -52,7 +86,6 @@ class GamePage extends Component {
   nextQuestionHandler = () => {
     const oneSec = 1000;
     clearInterval(this.setIntervalId);
-    const numberFour = 4;
     const { questionIndex } = this.state;
     if (questionIndex === numberFour) {
       const { history } = this.props;

@@ -52,7 +52,12 @@ class GamePage extends Component {
   nextQuestionHandler = () => {
     const oneSec = 1000;
     clearInterval(this.setIntervalId);
-
+    const numberFour = 4;
+    const { questionIndex } = this.state;
+    if (questionIndex === numberFour) {
+      const { history } = this.props;
+      history.push('/feedback');
+    }
     this.setState((prevState) => ({
       ...prevState,
       questionIndex: prevState.questionIndex + 1,
@@ -112,6 +117,7 @@ GamePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   questions: PropTypes.instanceOf(Array).isRequired,
   points: PropTypes.number.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default connect(mapStateToProps)(GamePage);

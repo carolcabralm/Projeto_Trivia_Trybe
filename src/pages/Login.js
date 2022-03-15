@@ -82,7 +82,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.func.isRequired,
+  history: PropTypes.instanceOf(Object).isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

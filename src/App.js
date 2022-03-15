@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/gamepage" render={ (props) => <GamePage { ...props } /> } />
         <Route path="/settings" component={ Settings } />
         <Route path="/feedback" render={ (props) => <Feedback { ...props } /> } />
-        <Route path="/ranking" component={ Ranking } />
+        <Route path="/ranking" render={ (props) => <Ranking { ...props } /> } />
       </Switch>
     </div>
   );

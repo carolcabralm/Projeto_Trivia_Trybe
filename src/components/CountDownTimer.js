@@ -16,8 +16,4 @@ CountDownTimer.propTypes = {
   timer: PropTypes.number.isRequired,
 };
 
-// CountDownTimer.defaultProps = {
-//   timer: 30,
-// };
-
 export default CountDownTimer;

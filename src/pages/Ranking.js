@@ -13,6 +13,14 @@ class Ranking extends Component {
     const sortedRanking = ranking.sort((a, b) => b.score - a.score);
     return (
       <div>
+        <button
+          id="goHomeBtn"
+          type="button"
+          data-testid="btn-go-home"
+          onClick={ this.handleClickGoHome }
+        >
+          Go Home
+        </button>
         <p data-testid="ranking-title">Ranking</p>
         { sortedRanking.map((player, index) => (
           <div key={ index }>
@@ -30,14 +38,6 @@ class Ranking extends Component {
             </p>
           </div>
         ))}
-        <button
-          id="goHomeBtn"
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ this.handleClickGoHome }
-        >
-          Go Home
-        </button>
       </div>
     );
   }

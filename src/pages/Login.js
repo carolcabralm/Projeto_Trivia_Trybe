@@ -37,9 +37,9 @@ class Login extends Component {
   render() {
     const { playerName, playerEmail } = this.state;
     return (
-      <>
+      <div className="bg-slate-800 min-h-screen">
         <header className="App-header">
-          <img src={ logo } className="App-logo" alt="logo" />
+          <img src={ logo } className="w-100 h-32" alt="logo" />
         </header>
         <form>
           <label htmlFor="playerName">
@@ -76,7 +76,7 @@ class Login extends Component {
             Configurações
           </button>
         </form>
-      </>
+      </div>
     );
   }
 }

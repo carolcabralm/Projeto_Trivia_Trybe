@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import md5 from 'crypto-js/md5';
-import { quiz, addScore, resetScore } from '../redux/actions/actions';
+import { quiz, resetScore } from '../redux/actions/actions';
 import fetchQuiz from '../services/fetchQuiz';
 import Header from '../components/Header';
 import CountDownTimer from '../components/CountDownTimer';
 import Questions from '../components/Questions';
-import { SAVE_LOCAL_STORAGE, GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
-import store from '../redux/store/store';
+import savePlayerRanking from '../helpers/savePlayerRanking';
+import {
+  ONE_SECOND,
+  LAST_QUESTION_INDEX,
+} from '../helpers/constants';
 
-const numberFour = 4;
 class GamePage extends Component {
   state = {
     questions: [],
     countDownTimer: 30,
-    questionIndex: 0,
+    currQuizIndex: 0,
   }
 
   async componentDidMount() {
-    const oneSec = 1000;
     const querys = await fetchQuiz();
     const { dispatch } = this.props;
 
-    this.setIntervalId = setInterval(this.startCountDown, oneSec);
+    this.setIntervalId = setInterval(this.startCountDown, ONE_SECOND);
 
     this.setState({
       questions: querys,
@@ -35,42 +35,12 @@ class GamePage extends Component {
     dispatch(resetScore(0));
   }
 
-  componentDidUpdate(_prevProps, prevState) {
-    const { questionIndex } = this.state;
-    const { points } = this.props;
-    if (prevState.questionIndex !== questionIndex) {
-      SAVE_LOCAL_STORAGE('pontos', points);
-    }
-  }
-
   componentWillUnmount() {
-    this.savePlayerRanking();
-  }
+    const { dispatch } = this.props;
 
-  savePlayerRanking = () => {
-    const { name, score, gravatarEmail } = store.getState().player;
-    const picture = this.requestAvatar(gravatarEmail);
-    const playerInfo = {
-      name,
-      score,
-      picture,
-    };
-
-    const playersRanking = GET_LOCAL_STORAGE('ranking');
-    console.log(playersRanking);
-
-    if (playersRanking === null) {
-      console.log('log do if');
-      SAVE_LOCAL_STORAGE('ranking', [playerInfo]);
-    } else {
-      const newRanking = [...playersRanking, playerInfo];
-      SAVE_LOCAL_STORAGE('ranking', newRanking);
-    }
-  }
-
-  requestAvatar = (playerEmail) => {
-    const hashEmail = md5(playerEmail).toString();
-    return `https://www.gravatar.com/avatar/${hashEmail}`;
+    savePlayerRanking();
+    this.stopCountDown();
+    dispatch(quiz([]));
   }
 
   startCountDown = () => {
@@ -84,53 +54,31 @@ class GamePage extends Component {
   }
 
   nextQuestionHandler = () => {
-    const oneSec = 1000;
-    clearInterval(this.setIntervalId);
-    const { questionIndex } = this.state;
-    if (questionIndex === numberFour) {
+    this.stopCountDown();
+    const { currQuizIndex } = this.state;
+
+    if (currQuizIndex === LAST_QUESTION_INDEX) {
       const { history } = this.props;
       history.push('/feedback');
     }
+
     this.setState((prevState) => ({
       ...prevState,
-      questionIndex: prevState.questionIndex + 1,
+      currQuizIndex: prevState.currQuizIndex + 1,
       countDownTimer: 30,
     }));
-    this.setIntervalId = setInterval(this.startCountDown, oneSec);
-  }
 
-  calculateScore = () => {
-    const { countDownTimer, questionIndex } = this.state;
-    const { questions, dispatch } = this.props;
-    const { difficulty } = questions[questionIndex];
-
-    let levelScore = 0;
-    const hardNumber = 3;
-    const mediumNumber = 2;
-    const easyNumber = 1;
-    const scoreNumber = 10;
-
-    if (difficulty === 'hard') {
-      levelScore = hardNumber;
-    } else if (difficulty === 'medium') {
-      levelScore = mediumNumber;
-    } else {
-      levelScore = easyNumber;
-    }
-
-    const score = scoreNumber + (countDownTimer * levelScore);
-
-    dispatch(addScore(score));
+    this.setIntervalId = setInterval(this.startCountDown, ONE_SECOND);
   }
 
   render() {
-    const { countDownTimer, questionIndex } = this.state;
+    const { countDownTimer, currQuizIndex } = this.state;
     return (
       <div>
         <Header />
         <Questions
           timer={ countDownTimer }
-          questionIndex={ questionIndex }
+          currQuizIndex={ currQuizIndex }
           stopCountDown={ this.stopCountDown }
           nextQuestionHandler={ this.nextQuestionHandler }
           calculateScore={ this.calculateScore }
@@ -142,14 +90,11 @@ class GamePage extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  questions: state.reducerQuiz.quiz,
-  points: state.player.score,
+  questionsArr: state.reducerQuiz.quiz,
 });
 
 GamePage.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  questions: PropTypes.instanceOf(Array).isRequired,
-  points: PropTypes.number.isRequired,
   history: PropTypes.instanceOf(Object).isRequired,
 };
 

@@ -32,13 +32,12 @@ class Feedback extends React.Component {
     return (
       <>
         <Header />
-        <p data-testid="feedback-text">Feedback</p>
         {
           wellDone
             ? <p data-testid="feedback-text">Well Done!</p>
             : <p data-testid="feedback-text">Could be better...</p>
         }
-        Placar Final:
+        Final Score:
         <p data-testid="feedback-total-score">{ finalScore }</p>
         Número de respostas corretas:
         <p data-testid="feedback-total-question">{ correctAnswers }</p>

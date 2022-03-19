@@ -104,6 +104,7 @@ class Questions extends Component {
                       currQuizIndex={ currQuizIndex }
                       incorrectAnswers={ question.incorrect_answers }
                       correctAnswer={ question.correct_answer }
+                      shuffledAnswers={ question.randoming }
                     />
                   </div>
 

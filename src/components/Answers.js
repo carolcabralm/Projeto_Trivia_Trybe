@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
-import shuffledAnswers from '../helpers/arrayShuffle';
+// import shuffledAnswers from '../helpers/arrayShuffle';
 import Loading from './Loading';
 
 class Answers extends Component {
@@ -10,29 +10,30 @@ class Answers extends Component {
     shuffledAnswersBtns: [],
   }
 
-  componentDidMount() {
-    this.setState({
-      shuffledAnswersBtns: shuffledAnswers(this.sortAnswers()),
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     shuffledAnswersBtns: shuffledAnswers(this.sortAnswers()),
+  //   });
+  // }
 
-  componentDidUpdate(prevProps) {
-    const { currQuizIndex } = this.props;
-    if (currQuizIndex !== prevProps.currQuizIndex) {
-      this.setState({
-        shuffledAnswersBtns: shuffledAnswers(this.sortAnswers()),
-      });
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { currQuizIndex } = this.props;
+  //   if (currQuizIndex !== prevProps.currQuizIndex) {
+  //     this.setState({
+  //       shuffledAnswersBtns: shuffledAnswers(this.sortAnswers()),
+  //     });
+  //   }
+  // }
 
   sortAnswers = () => {
-    const { incorrectAnswers, correctAnswer } = this.props;
+    const { incorrectAnswers, correctAnswer, shuffledAnswers } = this.props;
 
-    const answers = [...incorrectAnswers, correctAnswer];
+    // const answers = [...incorrectAnswers, correctAnswer];
+    const answers = [...shuffledAnswers];
 
-    const newAnswers = answers.map((answer, answerIndex, array) => {
+    const newAnswers = answers.map((answer, answerIndex) => {
       const cleanAnswer = sanitizeHtml(answer);
-      if (answerIndex === array.length - 1) {
+      if (answer === correctAnswer) {
         return (
           <button
             name="answer"
@@ -63,11 +64,11 @@ class Answers extends Component {
   }
 
   render() {
-    const { shuffledAnswersBtns } = this.state;
+    // const { shuffledAnswersBtns } = this.state;
     return (
       <div>
-        { shuffledAnswersBtns.length > 0
-          ? shuffledAnswersBtns.map((button) => button) : <Loading /> }
+        { this.sortAnswers().length > 0
+          ? this.sortAnswers().map((button) => button) : <Loading /> }
       </div>
     );
   }

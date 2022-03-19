@@ -82,7 +82,7 @@ class Questions extends Component {
         <CountDownTimer />
         { questionsArr.length === 0
           ? 'Loading...' : ([questionsArr[questionIndex]]).map((question, quizIndex) => {
-            const answers = [...question.incorrect_answers, question.correct_answer];
+            const answers = [...question.randoming];
             return (
               <div key={ quizIndex }>
 
@@ -100,8 +100,8 @@ class Questions extends Component {
                   tabIndex={ 0 }
                 >
 
-                  {answers.map((answer, answerIndex, array) => {
-                    if (answerIndex === array.length - 1) {
+                  {answers.map((answer, answerIndex) => {
+                    if (answer === question.correct_answer) {
                       return (
                         <button
                           name="answer"
@@ -126,7 +126,7 @@ class Questions extends Component {
                         {answer}
                       </button>
                     );
-                  }).sort(() => this.randomNumber)}
+                  })}
 
                 </div>
 

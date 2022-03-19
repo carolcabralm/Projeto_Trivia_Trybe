@@ -57,7 +57,7 @@ class GamePage extends Component {
     };
 
     const playersRanking = GET_LOCAL_STORAGE('ranking');
-    console.log(playersRanking);
+    console.log('console do ranking', playersRanking);
 
     if (playersRanking === null) {
       console.log('log do if');

@@ -1,0 +1,94 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Press Start 2P' , cursive;
+}
+
+.form-container {
+  margin: 10% 0% 0% 10%;
+}
+
+.form {
+  display: block;
+  margin: 0% 0% 0% 5%;
+}
+
+.name-input-label {
+  color: #28a745;
+  font-size: 20px;
+  line-height: 50px;
+}
+
+.email-input-label {
+  color: #28a745;
+  font-size: 20px;
+  line-height: 50px;
+}
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0.432);
+  color: cadetblue;
+  height: 60px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.432);
+  box-shadow: 0 0 20px green;
+  color: rgb(17, 100, 42);
+}
+
+.play-btn {
+  font-size: 25px;
+  height: auto;
+  margin: 10px 0 35px;
+  padding: 15px;
+  width: 69%;
+}
+
+.play-btn:hover {
+  background-color: #35a34e;
+}
+
+.settings-btn {
+  background-color: rgb(34, 34, 34);
+  font-size: 14px;
+  height: auto;
+  margin-left: 74px;
+  padding: 15px;
+  width: auto;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
+  border: 1px solid green;
+  box-shadow: 0 0 0 1000px black inset;
+  -webkit-text-fill-color: cadetblue;
+}
+
+@media ( prefers-reduced-motion : no-preference ) {
+
+  .trivia-logo {
+    animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    margin-top: 10%;
+  }
+}
+
+@keyframes shake {
+
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

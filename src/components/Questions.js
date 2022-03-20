@@ -91,22 +91,11 @@ class Questions extends Component {
                     <p data-testid="question-text">{ cleanQuestion }</p>
                   </div>
 
-                  <div
-                    data-testid="answer-options"
-                    id="parentButton"
-                    onClick={ this.handleAnswerClick }
-                    onKeyDown={ this.handleAnswerClick }
-                    role="button"
-                    tabIndex={ 0 }
-                  >
-
-                    <Answers
-                      currQuizIndex={ currQuizIndex }
-                      incorrectAnswers={ question.incorrect_answers }
-                      correctAnswer={ question.correct_answer }
-                      shuffledAnswers={ question.randoming }
-                    />
-                  </div>
+                  <Answers
+                    handleAnswerClick={ this.handleAnswerClick }
+                    correctAnswer={ question.correct_answer }
+                    shuffledAnswers={ question.randoming }
+                  />
 
                 </div>
               );

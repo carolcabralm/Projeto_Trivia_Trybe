@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import validateLogin from '../helpers/validateLogin';
+import { Image, Container, Row, Col } from 'react-bootstrap';
 import logo from '../trivia.png';
 import { SAVE_LOCAL_STORAGE, GET_LOCAL_STORAGE } from '../helpers/fecthLocalStorage';
 import fetchToken from '../services/fetchToken';
 import { token, login } from '../redux/actions/actions';
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import LoginForm from '../components/LoginForm';
 
 class Login extends Component {
   state = {
@@ -13,7 +15,7 @@ class Login extends Component {
     playerEmail: '',
   }
 
-  handleChange = ({ target: { name, value } }) => {
+  handleInputChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value });
   }
 
@@ -37,46 +39,28 @@ class Login extends Component {
   render() {
     const { playerName, playerEmail } = this.state;
     return (
-      <div className="bg-slate-800 min-h-screen">
-        <header className="App-header">
-          <img src={ logo } className="w-100 h-32" alt="logo" />
-        </header>
-        <form>
-          <label htmlFor="playerName">
-            Name
-            <input
-              type="text"
-              data-testid="input-player-name"
-              name="playerName"
-              onChange={ this.handleChange }
+      <Container className="form-container">
+        <Row>
+          <Col>
+            <LoginForm
+              handleInputChange={ this.handleInputChange }
+              handleSettingsClick={ this.handleSettingsClick }
+              handleSubmit={ this.handleSubmit }
+              playerName={ playerName }
+              playerEmail={ playerEmail }
             />
-          </label>
-          <label htmlFor="playerEmail">
-            E-mail
-            <input
-              type="email"
-              data-testid="input-gravatar-email"
-              name="playerEmail"
-              onChange={ this.handleChange }
+          </Col>
+          <Col>
+            <Image
+              fluid
+              className="trivia-logo"
+              src={ logo }
+              alt="logo"
             />
-          </label>
-          <button
-            type="submit"
-            data-testid="btn-play"
-            disabled={ !validateLogin(playerEmail, playerName) }
-            onClick={ this.handleSubmit }
-          >
-            Play
-          </button>
-          <button
-            type="button"
-            data-testid="btn-settings"
-            onClick={ this.handleSettingsClick }
-          >
-            Configurações
-          </button>
-        </form>
-      </div>
+          </Col>
+        </Row>
+
+      </Container>
     );
   }
 }

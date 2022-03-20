@@ -128,7 +128,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 .quiz-container {
   border-radius: 10px;
   display: block;
-  height: 400px;
+  height: 420px;
   margin: 20px 0;
   width: 1200px;
 }
@@ -148,7 +148,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 .answers-container {
   display: grid;
-  grid-template-columns: 200px 200px;
+  grid-template-columns: 320px 320px;
   grid-template-rows: 100px;
   height: auto;
   justify-content: space-evenly;
@@ -159,7 +159,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   background-color: rgba(20, 216, 124, 0.637);
   border: 1px solid rgb(8, 73, 8);
   border-radius: 5px;
-  height: fit-content;
+  height: 70px;
   width: fit-content;
 }
 
@@ -168,7 +168,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   border: 3px solid rgb(6, 240, 15);
   border-radius: 5px;
   color: green;
-  height: fit-content;
+  height: 70px;
   width: fit-content;
 }
 
@@ -177,7 +177,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   border: 3px solid red;
   border-radius: 5px;
   color: red;
-  height: fit-content;
+  height: 70px;
   width: fit-content;
 }
 

@@ -74,8 +74,9 @@ class GamePage extends Component {
   render() {
     const { countDownTimer, currQuizIndex } = this.state;
     return (
-      <div>
+      <div className="gamepage">
         <Header />
+        <CountDownTimer timer={ countDownTimer } />
         <Questions
           timer={ countDownTimer }
           currQuizIndex={ currQuizIndex }
@@ -83,7 +84,6 @@ class GamePage extends Component {
           nextQuestionHandler={ this.nextQuestionHandler }
           calculateScore={ this.calculateScore }
         />
-        <CountDownTimer timer={ countDownTimer } />
       </div>
     );
   }

@@ -8,7 +8,6 @@ import CountDownTimer from './CountDownTimer';
 import Answers from './Answers';
 import getButtons from '../helpers/getButtons';
 import Loading from './Loading';
-import './Questions.css';
 import { SELECT_N_DISABLE, RESET_N_ENABLE } from '../helpers/constants';
 import calculateScore from '../helpers/calculateScore';
 
@@ -65,7 +64,7 @@ class Questions extends Component {
 
     if (actionString === 'reset & enable') {
       answersButtons.forEach((btn) => {
-        btn.className = '';
+        btn.className = 'answer-btn';
         btn.disabled = false;
       });
     }
@@ -84,13 +83,26 @@ class Questions extends Component {
               const cleanCategory = sanitizeHtml(question.category);
               const cleanQuestion = sanitizeHtml(question.question);
               return (
-                <div key={ questionIndex }>
+                <div className="quiz-container" key={ questionIndex }>
 
-                  <div>
-                    <p data-testid="question-category">{ cleanCategory }</p>
-                    <p data-testid="question-text">{ cleanQuestion }</p>
+                  <div className="quiz-title">
+                    <p
+                      className="quiz-category"
+                      data-testid="question-category"
+                    >
+                      { cleanCategory}
+                    </p>
+                    <p
+                      className="question"
+                      data-testid="question-text"
+                    >
+                      { cleanQuestion }
+
+                    </p>
+                    { buttonNextVisible ? <ButtonNext
+                      clickHandler={ nextQuestionHandler }
+                    /> : ''}
                   </div>
-
                   <Answers
                     handleAnswerClick={ this.handleAnswerClick }
                     correctAnswer={ question.correct_answer }
@@ -100,8 +112,6 @@ class Questions extends Component {
                 </div>
               );
             })}
-        { buttonNextVisible
-          ? <ButtonNext clickHandler={ nextQuestionHandler } /> : ''}
       </div>
     );
   }

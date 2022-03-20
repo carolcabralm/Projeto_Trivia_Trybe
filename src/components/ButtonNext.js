@@ -7,6 +7,7 @@ class ButtonNext extends Component {
     return (
       <button
         name="button-next"
+        className="next-btn"
         type="button"
         onClick={ clickHandler }
         data-testid="btn-next"

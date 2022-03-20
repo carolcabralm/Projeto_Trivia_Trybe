@@ -11,6 +11,7 @@ class Answers extends Component {
 
     return (
       <div
+        className="answers-container"
         data-testid="answer-options"
         id="parentButton"
         onClick={ handleAnswerClick }
@@ -25,6 +26,7 @@ class Answers extends Component {
             return (
               <button
                 name="answer"
+                className="answer-btn"
                 key={ answerIndex }
                 data-testid="correct-answer"
                 type="button"
@@ -38,6 +40,7 @@ class Answers extends Component {
           return (
             <button
               name="answer"
+              className="answer-btn"
               key={ answerIndex }
               type="button"
               data-testid={ `wrong-answer-${answerIndex}` }

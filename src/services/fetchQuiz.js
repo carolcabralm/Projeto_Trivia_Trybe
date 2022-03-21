@@ -2,7 +2,6 @@ import { GET_LOCAL_STORAGE, SAVE_LOCAL_STORAGE } from '../helpers/fecthLocalStor
 import fetchToken from './fetchToken';
 
 const REQUEST_API = 'https://opentdb.com/api.php?amount=5&token=';
-// const TOKEN_ERROR = '3';
 
 const fetchQuiz = async () => {
   let getToken = GET_LOCAL_STORAGE('token');

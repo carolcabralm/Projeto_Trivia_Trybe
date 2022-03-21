@@ -108,7 +108,6 @@ class Questions extends Component {
                     correctAnswer={ question.correct_answer }
                     shuffledAnswers={ question.randoming }
                   />
-
                 </div>
               );
             })}

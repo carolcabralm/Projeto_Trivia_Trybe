@@ -36,6 +36,7 @@ class GamePage extends Component {
   }
 
   componentWillUnmount() {
+
     const { dispatch } = this.props;
 
     savePlayerRanking();

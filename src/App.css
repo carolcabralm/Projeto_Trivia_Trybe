@@ -187,3 +187,59 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   border-radius: 5px;
   color: white;
 }
+
+/* fim css gamepage */
+
+/* começo css feedback page */
+.feedback-header {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  height: 100px;
+  justify-content: space-around;
+}
+
+.feedback-container {
+  display: flexbox;
+  line-height: 50px;
+  margin-top: 80px;
+}
+
+.could-better-msg {
+  color: tomato;
+}
+
+.welldone-msg {
+  color: #0a8b40;
+}
+
+.total-score span {
+  color: green;
+  font-size: 30px;
+}
+
+.total-assertions span {
+  color: green;
+  font-size: 30px;
+}
+
+.play-again-btn {
+  background-color: rgb(98, 2, 223);
+  border-radius: 10px;
+  margin: 40px;
+}
+
+.play-again-btn:hover {
+  background-color: rgb(108, 9, 238);
+  box-shadow: 0 0 20px rgb(108, 9, 238);
+}
+
+.ranking-btn {
+  background-color: #6400d6;
+  border-radius: 10px;
+}
+
+.ranking-btn:hover {
+  background-color: rgb(108, 9, 238);
+  box-shadow: 0 0 20px rgb(108, 9, 238);
+}

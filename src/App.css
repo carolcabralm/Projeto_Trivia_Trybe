@@ -1,40 +1,80 @@
-.App {
-  text-align: center;
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  font-family: 'Press Start 2P' , cursive;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 140px;
-  pointer-events: none;
+/* começo css pagina Login */
+.form-container {
+  margin-top: 10%;
 }
 
-.red-border {
-  border: 1px solid red;
+.form {
+  display: block;
+  margin: 0% 0% 0% 5%;
 }
 
-.green-border {
+.name-input-label {
+  color: #28a745;
+  font-size: 20px;
+  line-height: 50px;
+}
+
+.email-input-label {
+  color: #28a745;
+  font-size: 20px;
+  line-height: 50px;
+}
+
+.form-control {
+  background-color: rgba(0, 0, 0, 0.432);
+  color: cadetblue;
+  height: 60px;
+  margin-bottom: 15px;
+  outline: none;
+}
+
+.form-control:focus {
+  background-color: rgba(0, 0, 0, 0.432);
+  box-shadow: 0 0 20px green;
+  color: rgb(17, 100, 42);
+}
+
+.play-btn {
+  font-size: 25px;
+  height: auto;
+  margin: 10px 0 35px;
+  padding: 15px;
+  width: 69%;
+}
+
+.play-btn:hover {
+  background-color: #35a34e;
+}
+
+.settings-btn {
+  background-color: rgb(34, 34, 34);
+  font-size: 14px;
+  height: auto;
+  margin-left: 74px;
+  padding: 15px;
+  width: auto;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:focus {
   border: 1px solid green;
+  box-shadow: 0 0 0 1000px black inset;
+  -webkit-text-fill-color: cadetblue;
 }
 
 @media ( prefers-reduced-motion : no-preference ) {
 
-  .App-logo {
+  .trivia-logo {
     animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    margin-top: 10%;
   }
-}
-
-.App-header {
-  align-items: center;
-  background-color: #282c34;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  font-size: calc(10px + 2vmin);
-  justify-content: center;
-  min-height: 10px;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes shake {
@@ -55,3 +95,202 @@
     transform: translate3d(4px, 0, 0);
   }
 }
+
+/* final css pagina Login */
+
+/* começo css pagina GamePage  */
+.gamepage {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%2307ad4c' fill-opacity='0.35'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3Cpath d='M6 5V0H5v5H0v1h5v94h1V6h94V5H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  border: 3px solid #097e3a;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #097e3a inset;
+  margin-top: 10px;
+}
+
+.gamepage-header {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  height: 100px;
+  justify-content: space-around;
+}
+
+.player-avatar {
+  opacity: 0.7;
+}
+
+.timer {
+  font-size: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.quiz-container {
+  border-radius: 10px;
+  display: block;
+  height: 420px;
+  margin: 20px 0;
+  width: 1200px;
+}
+
+.quiz-title {
+  display: flexbox;
+  height: 200px;
+  justify-content: center;
+  line-height: 50px;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.quiz-category, .question {
+  background-color: rgba(11, 90, 53, 0.568);
+}
+
+.answers-container {
+  display: grid;
+  grid-template-columns: 320px 320px;
+  grid-template-rows: 100px;
+  height: auto;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.answer-btn {
+  background-color: rgba(20, 216, 124, 0.637);
+  border: 1px solid rgb(8, 73, 8);
+  border-radius: 5px;
+  height: 70px;
+  width: fit-content;
+}
+
+.correct {
+  background-color: black;
+  border: 3px solid rgb(6, 240, 15);
+  border-radius: 5px;
+  color: green;
+  height: 70px;
+  width: fit-content;
+}
+
+.wrong {
+  background-color: black;
+  border: 3px solid red;
+  border-radius: 5px;
+  color: red;
+  height: 70px;
+  width: fit-content;
+}
+
+.next-btn {
+  background-color: rgb(7, 114, 114);
+  border: 1px solid teal;
+  border-radius: 5px;
+  color: white;
+}
+
+/* fim css gamepage */
+
+/* começo css feedback page */
+.feedback-header {
+  align-items: center;
+  display: flex;
+  font-size: 20px;
+  height: 100px;
+  justify-content: space-around;
+}
+
+.feedback-container {
+  display: flexbox;
+  line-height: 50px;
+  margin-top: 80px;
+}
+
+.could-better-msg {
+  color: tomato;
+}
+
+.welldone-msg {
+  color: #0a8b40;
+}
+
+.total-score span {
+  color: green;
+  font-size: 30px;
+}
+
+.total-assertions span {
+  color: green;
+  font-size: 30px;
+}
+
+.play-again-btn {
+  background-color: rgb(98, 2, 223);
+  border-radius: 10px;
+  margin: 40px;
+}
+
+.play-again-btn:hover {
+  background-color: rgb(108, 9, 238);
+  box-shadow: 0 0 20px rgb(108, 9, 238);
+}
+
+.ranking-btn {
+  background-color: #6400d6;
+  border-radius: 10px;
+}
+
+.ranking-btn:hover {
+  background-color: rgb(108, 9, 238);
+  box-shadow: 0 0 20px rgb(108, 9, 238);
+}
+
+/* fim css feedback page */
+
+/* começo css ranking page */
+.ranking-container {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%2314712f' fill-opacity='0.4'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+  border: 3px solid rgb(5, 94, 5);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(2, 175, 68, 0.61) inset;
+  display: block;
+  text-align: center;
+  width: 500px;
+}
+
+.go-home-btn {
+  background-color: #097e3a;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.go-home-btn:hover {
+  background-color: #20b643;
+  border: 1px solid green;
+}
+
+.ranking-title {
+  font-size: 40px;
+  margin-top: 10px;
+}
+
+.winner {
+  color: gold;
+  font-size: 20px;
+  margin: 20px;
+}
+
+.ranking-pos {
+  color: #6400d6;
+  margin-top: 15px;
+}
+
+.players {
+  margin: 60px 0;
+}
+
+.ranking-avatar {
+  opacity: 0.7;
+  width: 150px;
+}
+
+/* fim css ranking page */

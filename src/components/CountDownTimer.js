@@ -5,7 +5,7 @@ class CountDownTimer extends Component {
   render() {
     const { timer } = this.props;
     return (
-      <div>
+      <div id="timer" className="timer">
         { timer === undefined ? '' : timer }
       </div>
     );

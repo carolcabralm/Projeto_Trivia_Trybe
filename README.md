@@ -1,7 +1,7 @@
 # Projeto_Trivia_Trybe
 
 Projeto desenvolvido no módulo de front-end do curso da Trybe.
-Desenvolvido em parceria com linkedin.com/in/byancaknorst e com o Rafael Pereira. (em breve os links do github)
+Desenvolvido em parceria com @byancaknorst e com o @rafaratier.
 
 Objetivo:
 
